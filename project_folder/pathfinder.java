@@ -10,29 +10,29 @@ public class pathfinder{
 
         //populate graph 
         HashMap<String, Integer> neighborsA = new HashMap<>();
-            neighborsA.put("B",calculateDistance(23, 23, 3,24, 20));
-            neighborsA.put("I",calculateDistance( 23,23,3,18,19));
+            neighborsA.put("B",calculateDistance(23, 23, 3,24, 20,1));
+            neighborsA.put("I",calculateDistance( 23,23,3,18,19,1));
             graph.put("A",neighborsA);
 
 
         HashMap<String, Integer> neighborsB = new HashMap<>();
-            neighborsB.put("C",calculateDistance(24,20,1, 21,13));
-            neighborsB.put("A",calculateDistance(24, 20, 1,23, 23));
+            neighborsB.put("C",calculateDistance(24,20,1, 21,13,3));
+            neighborsB.put("A",calculateDistance(24, 20, 1,23, 23,3));
             graph.put("B",neighborsB);
 
         HashMap<String, Integer> neighborsC = new HashMap<>();
-            neighborsC.put("D",calculateDistance(21, 13, 3, 25, 11));
-            neighborsC.put("B",calculateDistance(21, 13, 3, 24, 20));
+            neighborsC.put("D",calculateDistance(21, 13, 3, 25, 11,1));
+            neighborsC.put("B",calculateDistance(21, 13, 3, 24, 20,1));
             // neighborsD.put("",calculateDistance(0, 0, 0, 0, 0));
             graph.put("C",neighborsC);
 
         HashMap<String, Integer> neighborsD = new HashMap<>();
-            neighborsD.put("C",calculateDistance(25, 11, 1,21, 13));
-            // neighborsD.put("",calculateDistance(0, 0, 0, 0, 0));
+            neighborsD.put("C",calculateDistance(25, 11, 1,21, 13,3));
+            // neighborsD.put("",calculateDistance(0, 0, 0, 0, 0,0));
             graph.put("D",neighborsD);
 
             HashMap<String, Integer> neighborsI = new HashMap<>();
-            neighborsI.put("A",calculateDistance(18,19,1,23,23));
+            neighborsI.put("A",calculateDistance(18,19,1,23,23,3));
             graph.put("I",neighborsI);
 
 //print out hashmap
@@ -40,7 +40,9 @@ for(String id : graph.keySet()){
     String key = id.toString();
     String value = graph.get(id).toString();
     System.out.println(key + ":" + value);
-}
+} 
+
+dijkstra(graph, "A", "B");
 /* 
         HashMap<String, Integer> neighborsE = new HashMap<>();
         neighborsE.put("",calculateDistance(0, 0, 0, 0, 0));
@@ -75,58 +77,36 @@ for(String id : graph.keySet()){
         graph.put("K",);
 
 */
-
-        
-
-        
-
-
-
-
-
-
       
     }
 
     // calculate distance from point A to point B
 
-    public static Integer calculateDistance(int x1,int y1,int tt, int x2,int y2){
+    public static Integer calculateDistance(int x1,int y1,int tt, int x2,int y2,int tt2){
         int distance = (int) Math.sqrt( ((y2-y1)*(y2-y1)) +  ((x2-x1)*(x2-x1)))   ;
-        Integer time = (distance + tt) * 10;
+        Integer time = (distance + tt + tt2) * 10;
 
         return time;
 
     }
     
-   
-    //create graph of the map
-    // public static ArrayList<ArrayList<Integer>> createGraph(int start){
+    //Dijkstra's algorithm
 
+    public static void dijkstra( HashMap<String, Map<String,Integer>> graph, String start, String end){
+        System.out.println(getWeight(graph,start,end));
+        
+    }
 
-
-    // }
-
-    //method for adding edges to graph
-    static void addEdge(ArrayList<ArrayList<Integer>> graph, int start, int end ){
+    public static int getWeight(HashMap<String, Map<String,Integer>> graph,String s, String e){
+//get key, then key within the value, then get thee value 
+    //System.out.println(graph.get(s).get(e).toString());
+    return graph.get(s).get(e);
 
     }
 
 
 
 
-
-    //represents a point on the map 
-    class Location {
-        //id represents the locatino id
-        String id;
-        LinkedList<Location> neighbors;
-
-        public Location(String id){
-            this.id = id;
-            this.neighbors = new LinkedList<>();
-        }
-
-    }
 
     
 }
