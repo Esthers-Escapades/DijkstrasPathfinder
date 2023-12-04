@@ -5,10 +5,10 @@ start node == end Node
 start node 
 
 main method
-    create new List locations, with points A - J, basically saying these are the neighbords of all of the locations
+    create new Linked List locations, with points A - J, basically saying these are the neighbords of all of the elements, and set the shortest distance as infinity
 
-    create a new List with location_info, will take in String, int[x,y,terrain_type,monster_encounter]> this graph will determine the 
-    A : {3,3,0,1} 
+
+
 
    
 
@@ -26,3 +26,8 @@ method 1: dijkstra's algorithm
 method 2: print out length of time from Start node to end node using hashmap from method 1
     time = get A.key[B]
     return "The amount of time it takes to get from point A to B is: " + time + " minutes"
+
+
+///
+create a graph 
+the way you calculate distance is you take a nod
