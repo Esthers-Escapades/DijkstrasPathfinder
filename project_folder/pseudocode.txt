@@ -1,0 +1,28 @@
+Given: al of map, start_node, end_node, list of characters
+Output: distance from Start Node to End Node
+//test case
+start node == end Node
+start node 
+
+main method
+    create new List locations, with points A - J, basically saying these are the neighbords of all of the locations
+
+    create a new List with location_info, will take in String, int[x,y,terrain_type,monster_encounter]> this graph will determine the 
+    A : {3,3,0,1} 
+
+   
+
+    pass graph1 graph2 and start node in method 1
+    pass hashmap from method 1 into method 2 
+
+method 0: determine distance 
+
+method 1: dijkstra's algorithm
+    get al, 
+    part 1: output hashmap of all of the distances
+    part 2: output hashmap of all distances based on specific character
+
+
+method 2: print out length of time from Start node to end node using hashmap from method 1
+    time = get A.key[B]
+    return "The amount of time it takes to get from point A to B is: " + time + " minutes"
