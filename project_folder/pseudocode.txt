@@ -30,4 +30,12 @@ method 2: print out length of time from Start node to end node using hashmap fro
 
 ///
 create a graph 
-the way you calculate distance is you take a nod
+the way you calculate distance is you take a nod  
+
+
+///Old Code
+        HashMap<String, Integer> neighborsK = new HashMap<>();
+        neighborsK.put("",calculateDistance(0, 0, 0, 0, 0));
+        neighborsK.put("",calculateDistance(0, 0, 0, 0, 0));
+        neighborsK.put("",calculateDistance(0, 0, 0, 0, 0));
+        graph.put("K",);
