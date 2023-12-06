@@ -3,37 +3,57 @@ import java.util.*;
 public class testing {
     
  // Add edge
-  static void addEdge(ArrayList<ArrayList<Integer>> am, int s, int d) {
-    am.get(s).add(d);
-    am.get(d).add(s);
-  }
+    public static void main(String[] args) {
+        // Example graph represented by an adjacency list
+        Map<String, Map<String, Integer>> graph = new HashMap<>();
+        graph.put("A", Map.of("B", 3, "C", 5));
+        graph.put("B", Map.of("A", 3, "C", 1));
+        graph.put("C", Map.of("A", 5, "B", 1));
 
-  public static void main(String[] args) {
+        String source = "A";
+        Map<String, Integer> distances = dijkstra(graph, source);
 
-    // Create the graph
-    int V = 5;
-    ArrayList<ArrayList<Integer>> am = new ArrayList<ArrayList<Integer>>(V);
-
-    for (int i = 0; i < V; i++)
-      am.add(new ArrayList<Integer>());
-
-    // Add edges
-    addEdge(am, 0, 1);
-    addEdge(am, 0, 2);
-    addEdge(am, 0, 3);
-    addEdge(am, 1, 2);
-
-    printGraph(am);
-  }
-
-  // Print the graph
-  static void printGraph(ArrayList<ArrayList<Integer>> am) {
-    for (int i = 0; i < am.size(); i++) {
-      System.out.println("\nVertex " + i + ":");
-      for (int j = 0; j < am.get(i).size(); j++) {
-        System.out.print(" -> " + am.get(i).get(j));
-      }
-      System.out.println();
+        // Print the distances
+        for (Map.Entry<String, Integer> entry : distances.entrySet()) {
+            System.out.println("Distance from " + source + " to " + entry.getKey() + " is " + entry.getValue());
+        }
     }
-  }
+
+    public static Map<String, Integer> dijkstra(Map<String, Map<String, Integer>> graph, String source) {
+        PriorityQueue<Node> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
+        Map<String, Integer> distances = new HashMap<>();
+
+        priorityQueue.add(new Node(source, 0));
+
+        while (!priorityQueue.isEmpty()) {
+            Node currentNode = priorityQueue.poll();
+            String currentVertex = currentNode.vertex;
+            int currentDistance = currentNode.distance;
+
+            if (!distances.containsKey(currentVertex)) {
+                distances.put(currentVertex, currentDistance);
+
+                Map<String, Integer> neighbors = graph.getOrDefault(currentVertex, Collections.emptyMap());
+                for (Map.Entry<String, Integer> neighborEntry : neighbors.entrySet()) {
+                    String neighborVertex = neighborEntry.getKey();
+                    int edgeWeight = neighborEntry.getValue();
+                    int newDistance = currentDistance + edgeWeight;
+
+                    priorityQueue.add(new Node(neighborVertex, newDistance));
+                }
+            }
+        }
+
+        return distances;
+    }
+
+    static class Node {
+        String vertex;
+        int distance;
+
+        public Node(String vertex, int distance) {
+            this.vertex = vertex;
+            this.distance = distance;
+        }
+    }
 }

@@ -6,12 +6,12 @@ public class pathfinder{
 
     public static void main(String[] args){
         //ask user for start and end location
-        System.out.println("Pick a starting location from A - I");
+        System.out.println("Pick a starting location from A - J");
         Scanner input = new Scanner(System.in);
 
         String start = input.next().toUpperCase().trim();
 
-        System.out.println("Pick an end location from A - I");
+        System.out.println("Pick an end location from A - B");
         String end = input.next().toUpperCase().trim();
 
         //set number of locations
@@ -76,7 +76,7 @@ public class pathfinder{
             al.put("J",neighborsJ);
 
 //TESTING: print out hashmap
-for (Map.Entry<String, ArrayList<Node>> entry : al.entrySet()) {
+/*for (Map.Entry<String, ArrayList<Node>> entry : al.entrySet()) {
     String key = entry.getKey();
     ArrayList<Node> value = entry.getValue();
 
@@ -86,7 +86,7 @@ for (Map.Entry<String, ArrayList<Node>> entry : al.entrySet()) {
     for (Node node : value) {
         System.out.println("  Node ID: " + node.getId() + ", Duration: " + node.getDuration());
     }
-}
+}*/
     // run dijkstra's 
        System.out.println( dijkstra(al,start,end,L));
         
@@ -145,7 +145,7 @@ for (Map.Entry<String, ArrayList<Node>> entry : al.entrySet()) {
 
             //update neighbor travel duration
             for(Node neighbor : graph.get(currNode.getId())){
-                System.out.println("Node " + currNode.getId() + " has neighbor: " + neighbor );
+             //   System.out.println("Node " + currNode.getId() + " has neighbor: " + neighbor );
                 if(duration.containsKey(neighbor.getId())){
                     int newDuration = duration.get(currNode.getId()) + neighbor.getDuration();
 
@@ -165,7 +165,7 @@ for (Map.Entry<String, ArrayList<Node>> entry : al.entrySet()) {
     }
     
 
-    
+ 
 
 
 }
